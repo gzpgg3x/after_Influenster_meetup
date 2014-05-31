@@ -8,44 +8,15 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'Category'
-        db.create_table(u'rango_category', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(unique=True, max_length=128)),
-            ('views', self.gf('django.db.models.fields.IntegerField')(default=0)),
-            ('likes', self.gf('django.db.models.fields.IntegerField')(default=0)),
-        ))
-        db.send_create_signal(u'rango', ['Category'])
-
-        # Adding model 'Page'
-        db.create_table(u'rango_page', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('category', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['rango.Category'])),
-            ('title', self.gf('django.db.models.fields.CharField')(max_length=128)),
-            ('url', self.gf('django.db.models.fields.URLField')(max_length=200)),
-            ('views', self.gf('django.db.models.fields.IntegerField')(default=0)),
-            ('mylikes', self.gf('django.db.models.fields.IntegerField')(default=0)),
-        ))
-        db.send_create_signal(u'rango', ['Page'])
-
-        # Adding model 'UserProfile'
-        db.create_table(u'rango_userprofile', (
-            ('user', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['auth.User'], unique=True, primary_key=True)),
-            ('website', self.gf('django.db.models.fields.URLField')(max_length=200, blank=True)),
-            ('picture', self.gf('django.db.models.fields.files.ImageField')(max_length=100, blank=True)),
-        ))
-        db.send_create_signal(u'rango', ['UserProfile'])
+        # Adding field 'Page.likes'
+        db.add_column(u'rango_page', 'likes',
+                      self.gf('django.db.models.fields.IntegerField')(default=0),
+                      keep_default=False)
 
 
     def backwards(self, orm):
-        # Deleting model 'Category'
-        db.delete_table(u'rango_category')
-
-        # Deleting model 'Page'
-        db.delete_table(u'rango_page')
-
-        # Deleting model 'UserProfile'
-        db.delete_table(u'rango_userprofile')
+        # Deleting field 'Page.likes'
+        db.delete_column(u'rango_page', 'likes')
 
 
     models = {
@@ -96,6 +67,7 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Page'},
             'category': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['rango.Category']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'likes': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
             'mylikes': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
             'url': ('django.db.models.fields.URLField', [], {'max_length': '200'}),

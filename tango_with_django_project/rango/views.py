@@ -441,8 +441,8 @@ def like_page(request):
     pag_id = None
     if request.method == 'GET':
         pag_id = request.GET['page_id']
-    else:
-        pag_id = request.POST['page_id']        
+    # else:
+    #     pag_id = request.POST['page_id']        
 
     pagelikes = 0
     if pag_id:
