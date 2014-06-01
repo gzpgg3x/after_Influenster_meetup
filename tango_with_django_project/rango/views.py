@@ -51,7 +51,7 @@ def index(request):
     cat_list = get_category_list()
     context_dict['cat_list'] = cat_list
 
-    page_list = Page.objects.order_by('-views')[:5]
+    page_list = Page.objects.order_by('-mylikes')[:5]
     context_dict['pages'] = page_list
 
     if request.session.get('last_visit'):
