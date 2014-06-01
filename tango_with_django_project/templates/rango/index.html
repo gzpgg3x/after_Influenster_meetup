@@ -5,11 +5,11 @@
 {% block body_block %}
 <div class="hero-unit">
 <!--     <img src="http://www.pd4pic.com/images/stick-outline-silhouette-backpacker-cartoon-free.png" style="width: 85px" alt="Picture of Rango" />  -->   
-    <h1>Lonely DevNet</h1>
+    <h1>hackathonAB.ly</h1>
 
     <br/>
 
-    <p>Platform for reviewing, rating and sharing online resources for tech topics.</p>
+    <p>hackathonAB.ly is a platform for finding and scheduling hackathons. </p>
 <!--     <img src="http://www.pd4pic.com/images/stick-outline-silhouette-backpacker-cartoon-free.png" style="width: 85px" alt="Picture of Rango" /> -->
 </div>
 </div>
@@ -40,15 +40,15 @@
     </div>
     <!--/span-->
     <div class="span6">
-        <h2>Top 5 List of Lonely DevNet</h2>
+        <h2>Most Popular by Hacker Votes</h2>
         {% if pages %}
         <ul>
             {% for page in pages %}
-            <li><a href="{{ page.url}}">{{ page.title }}</a> - {{ page.category}} ({{ page.views }} review(s)) ({{ page.mylikes }} likes(s))</li>
+            <li><a href="{{ page.url}}">{{ page.title }}</a> ({{ page.mylikes }} vote(s))</li>
             {% endfor %}
         </ul>
         {% else %}
-        <strong>No pages at present.</strong>
+        <strong>No Location & Dates at present.</strong>
         {% endif %}
 
     </div>
